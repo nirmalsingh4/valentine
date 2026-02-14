@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Packet ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(-45deg,#1a001f,#330033,#4b0033,#1a001f);
+background-size:400% 400%;
+animation:gradientMove 18s ease infinite;
+color:white;
+overflow-x:hidden;
+}
+
+@keyframes gradientMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* INTRO SCREEN */
+#intro{
+position:fixed;
+width:100%;
+height:100vh;
+background:linear-gradient(135deg,#3a003f,#1a001f);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:9999;
+text-align:center;
+cursor:pointer;
+}
+
+#intro h1{
+font-family:'Dancing Script';
+font-size:3rem;
+}
+
+#intro p{
+margin-top:15px;
+opacity:0.8;
+}
+
+/* Sections */
+section{
+padding:90px 20px;
+text-align:center;
+opacity:0;
+transform:translateY(40px);
+transition:1.5s;
+}
+section.show{
+opacity:1;
+transform:translateY(0);
+}
+
+h1,h2{font-family:'Dancing Script'}
+
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#3a003f,#1a001f);
+position:relative;
+}
+
+/* Floating Hearts */
+.heart{
+position:absolute;
+width:16px;height:16px;
+background:#ff4e78;
+transform:rotate(45deg);
+animation:float 12s infinite ease-in;
+}
+.heart:before,.heart:after{
+content:"";
+position:absolute;
+width:16px;height:16px;
+background:inherit;
+border-radius:50%;
+}
+.heart:before{top:-8px}
+.heart:after{left:-8px}
+@keyframes float{
+0%{transform:translateY(100vh) rotate(45deg);opacity:0}
+50%{opacity:1}
+100%{transform:translateY(-10vh) rotate(45deg);opacity:0}
+}
+
+/* SIDE BY SIDE MEMORY */
+.memory-row{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:30px;
+margin:40px 0;
+flex-wrap:wrap;
+}
+
+.memory-row img{
+width:250px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(255,0,120,0.4);
+transition:0.4s;
+}
+
+.memory-row img:hover{
+transform:scale(1.05);
+}
+
+.divider{
+width:4px;
+height:250px;
+background:linear-gradient(to bottom,#ff4e78,#ffffff,#ff4e78);
+border-radius:4px;
+}
+
+/* Envelope */
+.envelope{
+width:200px;
+height:140px;
+background:#ff4e78;
+margin:30px auto;
+cursor:pointer;
+border-radius:8px;
+}
+
+.letter{
+display:none;
+margin-top:25px;
+max-width:700px;
+margin-left:auto;
+margin-right:auto;
+line-height:1.8;
+}
+
+/* Button */
+button{
+padding:15px 30px;
+border:none;
+border-radius:40px;
+background:#ff4e78;
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+}
+button:hover{
+transform:scale(1.1);
+background:#ff1e56;
+}
+
+#finalMessage{
+display:none;
+font-size:2.5rem;
+margin-top:30px;
+color:#ff4e78;
+animation:pulse 2s infinite;
+}
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.05)}
+100%{transform:scale(1)}
+}
+
+/* Confetti */
+.confetti{
+position:fixed;
+width:8px;height:8px;
+top:-10px;
+animation:fall 3s linear forwards;
+}
+@keyframes fall{
+to{transform:translateY(100vh) rotate(720deg)}
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro" onclick="startExperience()">
+<h1>For Packet ❤️</h1>
+<p>Tap Anywhere To Begin</p>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+<h1> Happy Valentine Day LOVE ❤️</h1>
+<p>My Shweta. My Peace. My Forever.</p>
+</section>
+
+<!-- MEMORIES -->
+<section>
+<h2>Our Gym Love Story 💕</h2>
+
+<div class="memory-row">
+<img src="packet.jpg">
+<div class="divider"></div>
+<img src="packet1.jpg">
+</div>
+
+<div class="memory-row">
+<img src="packet2.jpg">
+<div class="divider"></div>
+<img src="packet.jpg">
+</div>
+
+</section>
+
+<!-- LETTER -->
+<section>
+<h2>Open My Heart 💌</h2>
+<div class="envelope" onclick="openLetter()"></div>
+<div class="letter" id="letter"></div>
+</section>
+
+<!-- FINAL -->
+<section>
+<h2>One Last Thing 💖</h2>
+<button onclick="revealLove()">Click For A Surprise</button>
+<div id="finalMessage">I Love You Forever, Packet ❤️</div>
+</section>
+
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+<source src="mp3.mpeg/song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* START EXPERIENCE (100% SOUND WORKS) */
+function startExperience(){
+document.getElementById("intro").style.display="none";
+const music=document.getElementById("bgMusic");
+music.volume=0.8;
+music.play();
+}
+
+/* Floating Hearts */
+for(let i=0;i<20;i++){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(8+Math.random()*6)+"s";
+document.querySelector(".hero").appendChild(heart);
+}
+
+/* Scroll Reveal */
+window.addEventListener("scroll",()=>{
+document.querySelectorAll("section").forEach(sec=>{
+if(sec.getBoundingClientRect().top<window.innerHeight-100)
+sec.classList.add("show");
+});
+});
+
+/* Letter */
+let text=`Shweta... Who knew a gym would become my favorite love story? 
+From quiet glances between workouts, to late night calls that never felt long enough... 
+Packet, you became my habit, my happiness, my peace. 
+The day you said "I love you" was the day my world felt complete. 
+I choose you. Today. Tomorrow. Forever. ❤️`;
+function openLetter(){
+document.querySelector(".envelope").style.display="none";
+let i=0;
+let element=document.getElementById("letter");
+element.style.display="block";
+element.innerHTML="";
+function type(){
+if(i<text.length){
+element.innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,35);
+}
+}
+type();
+}
+
+/* Confetti */
+function revealLove(){
+document.getElementById("finalMessage").style.display="block";
+for(let i=0;i<200;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.style.left=Math.random()*100+"vw";
+c.style.background=["#ff4e78","#ff1e56","#ffffff","#ff6f91"][Math.floor(Math.random()*4)];
+c.style.animationDuration=(2+Math.random()*3)+"s";
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),3000);
+}
+}
+</script>
+
+</body>
+</html>
